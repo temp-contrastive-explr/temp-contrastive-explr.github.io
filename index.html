@@ -10,8 +10,7 @@
       }
     };
   </script>
-  <script async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
   <meta charset="utf-8">
   <meta name="description" content="Curiosity-Driven Exploration via Temporal Contrastive Learning">
@@ -199,17 +198,17 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
-            Exploration remains a key challenge in reinforcement learning (RL),
-            especially in long-horizon tasks and environments with high-dimensional observations.
-            A common strategy for effective exploration is to promote state coverage or novelty, w
-            hich often involves estimating the agent's state visitation distribution. In this paper, we propose
-            <b>C</b>uriosity-Driven Exploration via <b>Te</b>mporal <b>C</b>ontrastive Learning Learning (C-TeC), an
-            exploration method based on temporal contrastive learning that rewards agents for reaching states with
-            unexpected futures. This incentivizes uncovering meaningful less-visited states. \methodName is simple and
-            does not require explicit density or uncertainty estimation, while learning representations aligned with the
-            RL objective. It consistently outperforms standard baselines in complex mazes using different embodiments
-            (Ant and Humanoid) and robotic manipulation tasks, while also yielding more diverse behaviors in Craftax
-            without requiring task-specific information.
+            <p>
+              Effective exploration in reinforcement learning requires keeping track not just of where the agent has
+              been, but also of how the agent thinks about and represents the world: an agent should explore states that
+              enable it to learn powerful representations.
+              Temporal representations can include the information required to solve any potential task while avoiding
+              the computational cost of reconstruction.
+              In this paper, we propose an exploration method that uses temporal representations to drive exploration,
+              maximizing coverage <em>as seen through the lens of these temporal representations.</em> We demonstrate
+              complex exploration behaviors in locomotion, manipulation, and embodied-AI tasks, revealing previously
+              unknown capabilities and behaviors once achievable only via extrinsic rewards.
+            </p>
             </p>
           </div>
         </div>
@@ -220,12 +219,13 @@
         <div class="column is-full-width has-text-centered">
           <h2 class="title is-3">Overview</h2>
           <div class="image is-inline-block">
-            <img src="./static/images/contrastive_archietecture.png" style="width: 100%; height: auto;"
+            <img src="./static/images/contrastive_architecture.png" style="width: 100%; height: auto;"
               alt="ctec_reward_visual" />
           </div>
-          <p>A state-action pair $(s_t, a_t)$ is passed through the encoder $\phi$, and the corresponding future state
-            is passed through the encoder $\psi$. The outputs of the encoders are used to compute the similarity score
-            and the intrinsic reward.</p>
+          <p>The agent's starting state is $( s_0 )$. We train a contrastive model such that the temporal similarity
+            between the representation of $((s_0, a_0))$ and $( s_{2,3,4,\ldots})$ is high, and we reward the agent for
+            visiting states that are further in the future. For example, the reward for visiting $( s_4 )$ from $( s_0
+            )$ should be larger than the reward for visiting $( s_3 )$ from the same $( s_0 )$.</p>
         </div>
       </div>
 
@@ -258,6 +258,7 @@
         <div class="column is-full-width">
           <!-- Re-rendering. -->
           <h3 class="title is-4">Agent Videos</h3>
+          <p>All agents are trained with the intrinsic reward, no task reward is provided</p><br>
           <h4 class="title is-5">Humanoid-u-maze</h4>
           <div class="columns is-centered">
             <div class="column is-third">
@@ -345,8 +346,8 @@
 
           <h4 class="title is-5">State Coverage</h4>
           <div class="content has-text-centered">
-            <img src="./static/images/All_robotics_envs_ctec_coverage_non_complete_future_states.png" style="width: 100%; height: auto;"
-              alt="ctec_reward_visual" />
+            <img src="./static/images/All_robotics_envs_ctec_coverage_non_complete_future_states.png"
+              style="width: 100%; height: auto;" alt="ctec_reward_visual" />
           </div>
           <h4 class="title is-5">Coverage of ant-largest-maze over training time</h4>
           <div class="content has-text-centered">
@@ -388,8 +389,7 @@
         <div class="column is-8">
           <div class="content">
             <p>
-              This website is adapted from <a
-                href="https://github.com/nerfies/nerfies.github.io">Nerfies website</a>.
+              This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website</a>.
             </p>
           </div>
         </div>
